@@ -14,5 +14,9 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^5.1.0"
+  },
+  "dependencies": {
+    "prop-types": "^15.8.1",
+    "react-admin": "^4.2.5"
   }
 }
