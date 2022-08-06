@@ -5,7 +5,7 @@ import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
 import AdminPage from './pages/AdminPage';
 // import UserPage from './pages/UserPage';
-// import SurveyPage from '.pages/SurveyPage';
+import SurveyPage from '.pages/SurveyPage';
 
 function App() {
   return (
@@ -21,10 +21,10 @@ function App() {
             path='/admin' 
             element={<AdminPage />} 
           />
-          <Route 
+          {/* <Route 
             path='/users' 
             element={<UserPage />} 
-          />
+          /> */}
           <Route 
             path='/survey' 
             element={<SurveyPage />} 
