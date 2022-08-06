@@ -1,9 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
-// import UserPage from './pages/UserPage';
 import AdminPage from './pages/AdminPage';
+// import UserPage from './pages/UserPage';
 // import SurveyPage from '.pages/SurveyPage';
 
 function App() {
@@ -23,6 +24,10 @@ function App() {
           <Route 
             path='/users' 
             element={<UserPage />} 
+          />
+          <Route 
+            path='/survey' 
+            element={<SurveyPage />} 
           />
           <Route 
             path='*'
