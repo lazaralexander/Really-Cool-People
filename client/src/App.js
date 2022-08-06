@@ -21,14 +21,14 @@ function App() {
             path='/admin' 
             element={<AdminPage />} 
           />
-          {/* <Route 
+          <Route 
             path='/users' 
             element={<UserPage />} 
-          /> */}
-          {/* <Route 
-            path='/users' 
+          />
+          <Route 
+            path='/survey' 
             element={<SurveyPage />} 
-          /> */}
+          />
           <Route 
             path='*'
             element={<h1 className='display-2'>Wrong page!</h1>}
