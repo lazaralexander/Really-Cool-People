@@ -20,10 +20,10 @@ function App() {
             path='/admin' 
             element={<AdminPage />} 
           />
-          <Route 
+          {/* <Route 
             path='/users' 
             element={<UserPage />} 
-          />
+          /> */}
           <Route 
             path='*'
             element={<h1 className='display-2'>Wrong page!</h1>}
