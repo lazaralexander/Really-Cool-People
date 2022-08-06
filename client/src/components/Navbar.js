@@ -4,8 +4,6 @@ import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
 import SignUpForm from './SignupForm';
 import LoginForm from './LoginForm';
 
-import Auth from '../utils/auth';
-
 const AppNavbar = () => {
   // set modal display state
   const [showModal, setShowModal] = useState(false);
@@ -15,25 +13,12 @@ const AppNavbar = () => {
       <Navbar bg='dark' variant='dark' expand='lg'>
         <Container fluid>
           <Navbar.Brand as={Link} to='/'>
-            Google Books Search
+            Match App
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar'>
             <Nav className='ml-auto'>
-              <Nav.Link as={Link} to='/'>
-                Search For Books
-              </Nav.Link>
-              {/* if user is logged in show saved books and logout */}
-              {Auth.loggedIn() ? (
-                <>
-                  <Nav.Link as={Link} to='/saved'>
-                    See Your Books
-                  </Nav.Link>
-                  <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
-                </>
-              ) : (
                 <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
-              )}
             </Nav>
           </Navbar.Collapse>
         </Container>
