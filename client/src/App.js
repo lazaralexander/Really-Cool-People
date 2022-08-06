@@ -1,9 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
-// import UserPage from './pages/UserPage';
 import AdminPage from './pages/AdminPage';
+// import UserPage from './pages/UserPage';
 // import SurveyPage from '.pages/SurveyPage';
 
 function App() {
@@ -20,10 +21,14 @@ function App() {
             path='/admin' 
             element={<AdminPage />} 
           />
-          <Route 
+          {/* <Route 
             path='/users' 
             element={<UserPage />} 
-          />
+          /> */}
+          {/* <Route 
+            path='/users' 
+            element={<SurveyPage />} 
+          /> */}
           <Route 
             path='*'
             element={<h1 className='display-2'>Wrong page!</h1>}
