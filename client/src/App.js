@@ -5,7 +5,7 @@ import HomePage from './pages/HomePage';
 // import UserPage from './pages/UserPage';
 import AdminPage from './pages/AdminPage';
 import LandingPage from './pages/LandingPage';
-// import SurveyPage from '.pages/SurveyPage';
+import SurveyPage from './pages/SurveyPage';
 
 function App() {
   return (
@@ -22,10 +22,10 @@ function App() {
             element={<AdminPage />} 
           />
 
-          {/* <Route 
-            path='/users' 
-            element={<UserPage />} 
-          /> */}
+          <Route 
+            path='/survey' 
+            element={<SurveyPage />} 
+          />
           <Route 
             path='*'
             element={<h1 className='display-2'>Wrong page!</h1>}
