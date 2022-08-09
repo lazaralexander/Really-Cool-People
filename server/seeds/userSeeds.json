@@ -1,0 +1,32 @@
+[
+    {
+        "username": "jared",
+        "emai": "jared@gmail.com",
+        "password": "password"
+    },
+    {
+        "username": "alexander",
+        "emai": "alexander@gmail.com",
+        "password": "password"
+    },
+    {
+        "username": "julia",
+        "emai": "julia@gmail.com",
+        "password": "password"
+    },
+    {
+        "username": "brianna",
+        "emai": "brianna@gmail.com",
+        "password": "password"
+    },
+    {
+        "username": "sebastian",
+        "emai": "sebastian@gmail.com",
+        "password": "password"
+    },
+    {
+        "username": "cassidy",
+        "emai": "cassidy@gmail.com",
+        "password": "password"
+    }
+]
