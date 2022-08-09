@@ -5,6 +5,8 @@ import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 import AdminPage from "./pages/AdminPage";
 import SurveyPage from "./pages/SurveyPage";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
 
 const client = new ApolloClient({
   uri: '/graphql',
@@ -21,6 +23,8 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/survey" element={<SurveyPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           <Route
             path="*"
             element={<h1 className="display-2">Wrong page!</h1>}

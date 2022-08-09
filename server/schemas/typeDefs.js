@@ -24,10 +24,9 @@ const typeDefs = gql`
 
   type User {
     _id: ID
-    firstName: String
-    lastName: String
+    username: String
     email: String
-    orders: [Order]
+    password: String
   }
 
   type Checkout {
@@ -43,7 +42,9 @@ const typeDefs = gql`
     categories: [Category]
     products(category: ID, name: String): [Product]
     product(_id: ID!): Product
-    user: User
+    getUserById(_id: ID!): User
+    getUserByName(username: String!): User
+    getUsers: [User]
     order(_id: ID!): Order
     checkout(products: [ID]!): Checkout
   }

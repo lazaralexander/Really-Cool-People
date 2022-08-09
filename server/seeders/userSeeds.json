@@ -1,32 +1,32 @@
 [
     {
         "username": "jared",
-        "emai": "jared@gmail.com",
+        "email": "jared@gmail.com",
         "password": "password"
     },
     {
         "username": "alexander",
-        "emai": "alexander@gmail.com",
+        "email": "alexander@gmail.com",
         "password": "password"
     },
     {
         "username": "julia",
-        "emai": "julia@gmail.com",
+        "email": "julia@gmail.com",
         "password": "password"
     },
     {
         "username": "brianna",
-        "emai": "brianna@gmail.com",
+        "email": "brianna@gmail.com",
         "password": "password"
     },
     {
         "username": "sebastian",
-        "emai": "sebastian@gmail.com",
+        "email": "sebastian@gmail.com",
         "password": "password"
     },
     {
         "username": "cassidy",
-        "emai": "cassidy@gmail.com",
+        "email": "cassidy@gmail.com",
         "password": "password"
     }
 ]
