@@ -1,7 +1,8 @@
 body {
-  font-family: 'Rubik', sans-serif;
+  /* change the font here */
+  font-family: 'Inspiration', cursive;
 }
-
+/* 
 h1,
 h2,
 h3,
@@ -9,14 +10,32 @@ h4,
 h5,
 h6 {
   font-family: 'Rubik Mono One', sans-serif;
-}
+} */
 
 .small {
   font-weight: 300;
   font-style: italic;
 }
 
-.landingPage{
-  background-image: url('https://newevolutiondesigns.com/images/freebies/4k-space-wallpaper-1.jpg');
-  height: 100vh;
+
+#intro {
+  /* changes the landing page image */
+    background: url("https://nayturr.com/wp-content/uploads/2020/09/why-are-some-clouds-pink-Sept82020-1-min-728x486.jpg.webp")no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
