@@ -24,9 +24,16 @@ const typeDefs = gql`
 
   type User {
     _id: ID
+<<<<<<< HEAD
     username: String
     email: String
     password: String
+=======
+    firstName: String
+    lastName: String
+    email: String
+    orders: [Order]
+>>>>>>> 7b8f495 (rebase 5)
   }
 
   type Checkout {
@@ -42,9 +49,13 @@ const typeDefs = gql`
     categories: [Category]
     products(category: ID, name: String): [Product]
     product(_id: ID!): Product
+<<<<<<< HEAD
     getUserById(_id: ID!): User
     getUserByName(username: String!): User
     getUsers: [User]
+=======
+    user: User
+>>>>>>> 7b8f495 (rebase 5)
     order(_id: ID!): Order
     checkout(products: [ID]!): Checkout
   }

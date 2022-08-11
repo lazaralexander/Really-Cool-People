@@ -1,6 +1,11 @@
-const { Schema, model } = require('mongoose');
+const mongoose = require('mongoose');
+
+<<<<<<< HEAD
+=======
+const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
 
+>>>>>>> 7b8f495 (rebase 5)
 const userSchema = new Schema(
   {
     username: {
@@ -19,10 +24,20 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+<<<<<<< HEAD
     surveyAnswers: {
       type: String,
       required: false,
     }
+=======
+  },
+  
+  // set this to use virtual below
+  {
+    toJSON: {
+      virtuals: true,
+    },
+>>>>>>> 7b8f495 (rebase 5)
   }
 );
 
@@ -41,6 +56,10 @@ userSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
 
+<<<<<<< HEAD
 const User = model('User', userSchema);
+=======
+const User = mongoose.model('User', userSchema);
+>>>>>>> 7b8f495 (rebase 5)
 
 module.exports = User;
