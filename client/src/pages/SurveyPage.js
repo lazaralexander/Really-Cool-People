@@ -8,21 +8,31 @@ import {
   Card,
   CardColumns,
 } from "react-bootstrap";
+import Options from "../components/Options";
 
 import Auth from "../utils/auth";
 
 const SurveyPage = () => {
   const [surveyAnswers, setSurveyAnswers] = useState({
-    'surveyInput-0': '',
-    'surveyInput-1': '',
-    'surveyInput-2': '',
+    "surveyInput-0": "",
+    "surveyInput-1": "",
+    "surveyInput-2": "",
   });
   const [survey, setSurvey] = useState([
     //questions
-    "a",
-    "b",
-    "c",
-  ])
+    {
+      question: "question text1",
+      choices: ["a", "b", "c"],
+    },
+    {
+      question: "question text2",
+      choices: ["d", "e", "f"],
+    },
+    {
+      question: "question text3",
+      choices: ["g", "h", "i"],
+    },
+  ]);
 
   // create function to handle saving a survey to our database
   const handleSaveSurvey = async (e) => {
@@ -37,9 +47,9 @@ const SurveyPage = () => {
   };
 
   //can we turn these to "for each"?
-  function update (e) {
-    const { name, value } = e.target
-    setSurveyAnswers({...surveyAnswers, [name]: value})
+  function update(e) {
+    const { name, value } = e.target;
+    setSurveyAnswers({ ...surveyAnswers, [name]: value });
     /**
      * {
      *  "surveyInput-0" : "test",
@@ -52,23 +62,20 @@ const SurveyPage = () => {
       <Container>
         <h1>Fill Out Your Match Survey!</h1>
         <Form onSubmit={handleSaveSurvey}>
-          {survey.map((question, index) => {
+          {survey.map((questions, index) => {
             return (
-              <Form.Row key={index}>
-            <h3>{question}</h3>
-            <Col xs={12} md={8}>
-              <Form.Control
-                name={`surveyInput-${index}`}
-                value={surveyAnswers[`surveyInput-${index}`]}
-                onChange = {update}
-                // redo inputs
-                //type="text"
-                // size="lg"
-                // placeholder="Answer 1"
-              />
-            </Col>
-          </Form.Row>
-            )
+              <Form.Row>
+                <h3>{questions.question}</h3>
+                <Col xs={12} md={8}>
+                  <Form as="select" size="lg">
+                    <Options
+                      input={questions.input}
+                      choices={questions.choices}
+                    ></Options>
+                  </Form>
+                </Col>
+              </Form.Row>
+            );
           })}
           <Form.Row>
             <Button type="submit" variant="success" size="lg">
