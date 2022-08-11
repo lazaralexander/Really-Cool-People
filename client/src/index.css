@@ -18,3 +18,8 @@ h6 {
   font-weight: 300;
   font-style: italic;
 }
+
+.landingPage{
+  background-image: url('https://newevolutiondesigns.com/images/freebies/4k-space-wallpaper-1.jpg');
+  height: 100vh;
+}
