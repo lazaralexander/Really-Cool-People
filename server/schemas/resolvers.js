@@ -1,7 +1,6 @@
-const { AuthenticationError } = require('apollo-server-express');
-<<<<<<< HEAD
-const { User } = require('../models');
-const { signToken } = require('../utils/auth');
+const { AuthenticationError } = require("apollo-server-express");
+const { User } = require("../models");
+const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
@@ -9,12 +8,7 @@ const resolvers = {
     getUserByName: (parent, args) => User.findOne({ username: args.username }),
     getUsers: () => User.find(),
   },
-=======
-const { User, Product, Category, Order } = require('../models');
-const { signToken } = require('../utils/auth');
 
-const resolvers = {
->>>>>>> 7b8f495 (rebase 5)
   Mutation: {
     addUser: async (parent, args) => {
       const user = await User.create(args);
@@ -36,10 +30,12 @@ const resolvers = {
     // },
     updateUser: async (parent, args, context) => {
       if (context.user) {
-        return await User.findByIdAndUpdate(context.user._id, args, { new: true });
+        return await User.findByIdAndUpdate(context.user._id, args, {
+          new: true,
+        });
       }
 
-      throw new AuthenticationError('Not logged in');
+      throw new AuthenticationError("Not logged in");
     },
     // updateProduct: async (parent, { _id, quantity }) => {
     //   const decrement = Math.abs(quantity) * -1;
@@ -50,20 +46,20 @@ const resolvers = {
       const user = await User.findOne({ email });
 
       if (!user) {
-        throw new AuthenticationError('Incorrect credentials');
+        throw new AuthenticationError("Incorrect credentials");
       }
 
       const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
-        throw new AuthenticationError('Incorrect credentials');
+        throw new AuthenticationError("Incorrect credentials");
       }
 
       const token = signToken(user);
 
       return { token, user };
-    }
-  }
+    },
+  },
 };
 
 module.exports = resolvers;
