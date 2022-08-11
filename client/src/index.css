@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:regular,bold,italic&subset=latin,latin-ext');
+
+
 body {
-  font-family: 'Rubik', sans-serif;
+  font-family: 'Cairo', sans-serif;
 }
 
 h1,
@@ -8,7 +11,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Rubik Mono One', sans-serif;
+  font-family: 'Cairo', sans-serif;
 }
 
 .small {

@@ -14,23 +14,23 @@ import Auth from "../utils/auth";
 
 const SurveyPage = () => {
   const [surveyAnswers, setSurveyAnswers] = useState({
-    "surveyInput-0": "",
-    "surveyInput-1": "",
-    "surveyInput-2": "",
+    Q1: "",
+    Q2: "",
+    Q3: "",
   });
   const [survey, setSurvey] = useState([
     //questions
     {
-      question: "question text1",
-      choices: ["a", "b", "c"],
+      question: "Favorite Color?",
+      choices: ["blue", "green", "yellow"],
     },
     {
-      question: "question text2",
-      choices: ["d", "e", "f"],
+      question: "Favorite Fruit?",
+      choices: ["orange", "banana", "apple"],
     },
     {
-      question: "question text3",
-      choices: ["g", "h", "i"],
+      question: "Favorite TA",
+      choices: ["Ben", "Probably Ben", "Definitely Ben"],
     },
   ]);
 
@@ -38,6 +38,10 @@ const SurveyPage = () => {
   const handleSaveSurvey = async (e) => {
     e.preventDefault();
     console.log("Handle form submit.");
+    const { name, value } = e.target;
+    const inputName = e.target.name;
+    const inputValue = e.target.value;
+    console.log(inputName, inputValue);
     const userProfile = Auth.getProfile();
     //grab ID for mutation
     // add mutation for (surveyAnswers)
@@ -49,6 +53,7 @@ const SurveyPage = () => {
   //can we turn these to "for each"?
   function update(e) {
     const { name, value } = e.target;
+    console.log(name, value);
     setSurveyAnswers({ ...surveyAnswers, [name]: value });
     /**
      * {
@@ -65,10 +70,13 @@ const SurveyPage = () => {
           {survey.map((questions, index) => {
             return (
               <Form.Row>
-                <h3>{questions.question}</h3>
+                <h5>{questions.question}</h5>
+                <br />
                 <Col xs={12} md={8}>
                   <Form as="select" size="lg">
                     <Options
+                      key={questions.key}
+                      value={questions.value}
                       input={questions.input}
                       choices={questions.choices}
                     ></Options>
