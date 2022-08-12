@@ -5,6 +5,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
+import LandingPage from "./pages/LandingPage";
 import AdminPage from "./pages/AdminPage";
 import SurveyPage from "./pages/SurveyPage";
 import Signup from "./pages/Signup";
@@ -22,7 +23,8 @@ function App() {
         <>
           <Navbar />
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/home" element={<HomePage />} />
             <Route path="/admin" element={<AdminPage />} />
             <Route path="/survey" element={<SurveyPage />} />
             <Route path="/login" element={<Login />} />

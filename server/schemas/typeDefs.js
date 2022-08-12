@@ -13,10 +13,23 @@ const typeDefs = gql`
     user: User
   }
 
+  type Answers {
+    user:  ID,
+    q1: String,
+    q2: String,
+    q3: String
+  }
+
+  type Match {
+    name: String,
+    score: Float
+  }
+
   type Query {
     getUserById(_id: ID!): User
     getUserByName(username: String!): User
     getUsers: [User]
+    getUserMatches(user: ID!): [Match]
   }
 
   type Mutation {
@@ -33,6 +46,7 @@ const typeDefs = gql`
       password: String
     ): User
     login(email: String!, password: String!): Auth
+    saveSurvey(user: ID!, q1: String!, q2: String!, q3: String!): Answers
   }
 `;
 

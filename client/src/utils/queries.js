@@ -10,3 +10,12 @@ export const QUERY_USER = gql`
     }
   }
 `;
+
+export const GET_USER_MATCHES = gql`
+  query getUserMatches($user: ID!) {
+    getUserMatches(user: $user) {
+      name
+      score
+    }
+  }
+`;
