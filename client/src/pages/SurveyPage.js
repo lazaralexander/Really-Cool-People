@@ -8,26 +8,40 @@ import {
   Card,
   CardColumns,
 } from "react-bootstrap";
+import Options from "../components/Options";
 
 import Auth from "../utils/auth";
 
 const SurveyPage = () => {
   const [surveyAnswers, setSurveyAnswers] = useState({
-    'surveyInput-0': '',
-    'surveyInput-1': '',
-    'surveyInput-2': '',
+    Q1: "",
+    Q2: "",
+    Q3: "",
   });
   const [survey, setSurvey] = useState([
     //questions
-    "a",
-    "b",
-    "c",
-  ])
+    {
+      question: "Favorite Color?",
+      choices: ["blue", "green", "yellow"],
+    },
+    {
+      question: "Favorite Fruit?",
+      choices: ["orange", "banana", "apple"],
+    },
+    {
+      question: "Favorite TA",
+      choices: ["Ben", "Probably Ben", "Definitely Ben"],
+    },
+  ]);
 
   // create function to handle saving a survey to our database
   const handleSaveSurvey = async (e) => {
     e.preventDefault();
     console.log("Handle form submit.");
+    const { name, value } = e.target;
+    const inputName = e.target.name;
+    const inputValue = e.target.value;
+    console.log(inputName, inputValue);
     const userProfile = Auth.getProfile();
     //grab ID for mutation
     // add mutation for (surveyAnswers)
@@ -37,9 +51,10 @@ const SurveyPage = () => {
   };
 
   //can we turn these to "for each"?
-  function update (e) {
-    const { name, value } = e.target
-    setSurveyAnswers({...surveyAnswers, [name]: value})
+  function update(e) {
+    const { name, value } = e.target;
+    console.log(name, value);
+    setSurveyAnswers({ ...surveyAnswers, [name]: value });
     /**
      * {
      *  "surveyInput-0" : "test",
@@ -52,23 +67,23 @@ const SurveyPage = () => {
       <Container>
         <h1>Fill Out Your Match Survey!</h1>
         <Form onSubmit={handleSaveSurvey}>
-          {survey.map((question, index) => {
+          {survey.map((questions, index) => {
             return (
-              <Form.Row key={index}>
-            <h3>{question}</h3>
-            <Col xs={12} md={8}>
-              <Form.Control
-                name={`surveyInput-${index}`}
-                value={surveyAnswers[`surveyInput-${index}`]}
-                onChange = {update}
-                // redo inputs
-                //type="text"
-                // size="lg"
-                // placeholder="Answer 1"
-              />
-            </Col>
-          </Form.Row>
-            )
+              <Form.Row>
+                <h5>{questions.question}</h5>
+                <br />
+                <Col xs={12} md={8}>
+                  <Form as="select" size="lg">
+                    <Options
+                      key={questions.key}
+                      value={questions.value}
+                      input={questions.input}
+                      choices={questions.choices}
+                    ></Options>
+                  </Form>
+                </Col>
+              </Form.Row>
+            );
           })}
           <Form.Row>
             <Button type="submit" variant="success" size="lg">
