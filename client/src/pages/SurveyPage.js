@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useMutation } from "@apollo/client";
 import {
   Jumbotron,
   Container,
@@ -9,45 +10,62 @@ import {
   CardColumns,
 } from "react-bootstrap";
 import Options from "../components/Options";
-
+import { SAVE_SURVEY } from "../utils/mutations";
 import Auth from "../utils/auth";
+import { COLORS, FRUITS, FTA } from "../utils/surveyChoices"
 
 const SurveyPage = () => {
+  const [saveSurvey, { error }] = useMutation(SAVE_SURVEY);
   const [surveyAnswers, setSurveyAnswers] = useState({
-    Q1: "",
-    Q2: "",
-    Q3: "",
+    q1: "blue",
+    q2: "orange",
+    q3: "Ben",
   });
+
   const [survey, setSurvey] = useState([
     //questions
     {
       question: "Favorite Color?",
-      choices: ["blue", "green", "yellow"],
+      choices: COLORS,
     },
     {
       question: "Favorite Fruit?",
-      choices: ["orange", "banana", "apple"],
+      choices: FRUITS,
     },
     {
       question: "Favorite TA",
-      choices: ["Ben", "Probably Ben", "Definitely Ben"],
+      choices: FTA,
     },
   ]);
+
+  //Kick back user if not logged in
+  useEffect(() => {
+    const isLoggedIn = Auth.loggedIn()
+
+    if (!isLoggedIn) {
+      window.location.assign('/');
+    }
+  })
 
   // create function to handle saving a survey to our database
   const handleSaveSurvey = async (e) => {
     e.preventDefault();
     console.log("Handle form submit.");
-    const { name, value } = e.target;
-    const inputName = e.target.name;
-    const inputValue = e.target.value;
-    console.log(inputName, inputValue);
-    const userProfile = Auth.getProfile();
-    //grab ID for mutation
-    // add mutation for (surveyAnswers)
-    // pass to graphql controller mutation to update the user with their survey data
-    // then, clear input data set survey inputs to clear after they receive data
-    setSurveyAnswers("");
+
+    const userId = Auth.getUserId();
+    const { q1, q2, q3 } = surveyAnswers
+
+    try {
+      const mutationResponse = await saveSurvey({
+        variables: { user: userId, q1: q1, q2: q2, q3: q3 }
+      });
+
+      alert("Your answers were successfully saved")
+
+      window.location.assign("/home")
+    } catch (err) {
+      //TODO: what do I do when error
+    }
   };
 
   //can we turn these to "for each"?
@@ -55,12 +73,6 @@ const SurveyPage = () => {
     const { name, value } = e.target;
     console.log(name, value);
     setSurveyAnswers({ ...surveyAnswers, [name]: value });
-    /**
-     * {
-     *  "surveyInput-0" : "test",
-     *  "surveyInput-1": "second",
-     * }
-     */
   }
   return (
     <Jumbotron fluid className="text-light bg-dark">
@@ -73,7 +85,7 @@ const SurveyPage = () => {
                 <h5>{questions.question}</h5>
                 <br />
                 <Col xs={12} md={8}>
-                  <Form as="select" size="lg">
+                  <Form as="select" size="lg" name={`q${index+1}`} onChange={update}>
                     <Options
                       key={questions.key}
                       value={questions.value}

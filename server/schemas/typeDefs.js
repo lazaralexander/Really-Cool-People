@@ -20,10 +20,16 @@ const typeDefs = gql`
     q3: String
   }
 
+  type Match {
+    name: String,
+    score: Float
+  }
+
   type Query {
     getUserById(_id: ID!): User
     getUserByName(username: String!): User
     getUsers: [User]
+    getUserMatches(user: ID!): [Match]
   }
 
   type Mutation {

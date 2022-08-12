@@ -21,8 +21,6 @@ if (process.env.NODE_ENV === "production") {
 }
 
 app.get("/", (req, res) => {
-  console.log("hittin index path");
-  console.log(req);
   res.sendFile(path.join(__dirname, "../client/build/index.html"));
 });
 
