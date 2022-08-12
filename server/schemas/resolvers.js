@@ -1,5 +1,5 @@
-const { AuthenticationError } = require('apollo-server-express');
-const { User } = require('../models');
+const { AuthenticationError, UserInputError } = require('apollo-server-express');
+const { User, Answers } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -15,18 +15,6 @@ const resolvers = {
 
       return { token, user };
     },
-    // addOrder: async (parent, { products }, context) => {
-    //   console.log(context);
-    //   if (context.user) {
-    //     const order = new Order({ products });
-
-    //     await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
-
-    //     return order;
-    //   }
-
-    //   throw new AuthenticationError('Not logged in');
-    // },
     updateUser: async (parent, args, context) => {
       if (context.user) {
         return await User.findByIdAndUpdate(context.user._id, args, { new: true });
@@ -34,11 +22,6 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
-    // updateProduct: async (parent, { _id, quantity }) => {
-    //   const decrement = Math.abs(quantity) * -1;
-
-    //   return await Product.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
-    // },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
@@ -55,6 +38,17 @@ const resolvers = {
       const token = signToken(user);
 
       return { token, user };
+    },
+    saveSurvey: async (parent, {user, q1, q2, q3}) => {
+      const existingAnswers = await Answers.findOne({ user })
+      console.log("existingAnswers", existingAnswers);
+      if (!!existingAnswers) {
+        throw new UserInputError('User has already answered survey')
+      }
+
+      const survey = await Answers.create({user, q1, q2, q3});
+
+      return survey;
     }
   }
 };
