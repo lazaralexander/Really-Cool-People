@@ -18,7 +18,7 @@ const LandingPage = () => {
                             <div class="col-md-10">
 
                                 {/* <!-- Heading --> */}
-                                <h2 class="display-4 font-weight-bold white-text pt-5 mb-2">Grumble App</h2>
+                                <h2 class="display-4 font-weight-bold white-text pt-5 mb-2">Welcome to Grumble!</h2>
 
                                 {/* <!-- Divider --> */}
                                 <hr class="hr-light" />
